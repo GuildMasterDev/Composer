@@ -17,10 +17,14 @@ export default function Settings() {
       const savedNotifications = await window.electronAPI.store.get('notifications')
       
       if (savedTheme) setTheme(savedTheme as 'light' | 'dark')
-      if (savedAutoUpdate !== undefined) setAutoUpdate(savedAutoUpdate)
-      if (savedNotifications !== undefined) setNotifications(savedNotifications)
+      if (savedAutoUpdate !== undefined && savedAutoUpdate !== null) {
+        setAutoUpdate(savedAutoUpdate as boolean)
+      }
+      if (savedNotifications !== undefined && savedNotifications !== null) {
+        setNotifications(savedNotifications as boolean)
+      }
       
-      applyTheme(savedTheme || 'light')
+      applyTheme((savedTheme as string) || 'light')
     }
   }
   

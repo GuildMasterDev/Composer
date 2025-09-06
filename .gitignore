@@ -41,3 +41,8 @@ out/
 # Build outputs
 build/
 release/
+
+# Compiled TypeScript files in src
+src/**/*.js
+src/**/*.js.map
+!src/**/*.config.js

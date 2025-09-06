@@ -8,8 +8,13 @@ export default function Header() {
   const navigate = useNavigate()
   
   useEffect(() => {
-    if (window.electronAPI?.app.getVersion) {
-      window.electronAPI.app.getVersion().then(setVersion)
+    if (window.electronAPI?.app?.getVersion) {
+      const appVersion = window.electronAPI.app.getVersion()
+      if (typeof appVersion === 'string') {
+        setVersion(appVersion)
+      }
+    } else if (window.electronAPI?.appVersion) {
+      window.electronAPI.appVersion().then(setVersion)
     }
   }, [])
   

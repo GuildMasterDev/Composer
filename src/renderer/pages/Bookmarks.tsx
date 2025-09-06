@@ -6,8 +6,8 @@ interface BookmarkItem {
   item_type: string
   item_id: string
   title: string
-  notes: string
-  created_at: string
+  notes?: string
+  created_at?: string
 }
 
 export default function Bookmarks() {
@@ -69,9 +69,11 @@ export default function Bookmarks() {
                       <span className={`px-2 py-1 text-xs rounded capitalize ${getTypeColor(bookmark.item_type)}`}>
                         {bookmark.item_type}
                       </span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(bookmark.created_at).toLocaleDateString()}
-                      </span>
+                      {bookmark.created_at && (
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(bookmark.created_at).toLocaleDateString()}
+                        </span>
+                      )}
                     </div>
                     {bookmark.notes && (
                       <p className="text-sm text-muted-foreground mt-2">{bookmark.notes}</p>
