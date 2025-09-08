@@ -84,7 +84,7 @@
     "zustand": "^4.4.7"
   },
   "build": {
-    "appId": "com.guildmaster.composershub",
+    "appId": "me.davidcanhelp.composershub",
     "productName": "Composer's Hub",
     "directories": {
       "output": "dist-electron"
