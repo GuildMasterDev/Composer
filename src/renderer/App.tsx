@@ -8,6 +8,7 @@ import Resources from './pages/Resources'
 import Workflows from './pages/Workflows'
 import Bookmarks from './pages/Bookmarks'
 import Settings from './pages/Settings'
+import Search from './pages/Search'
 import ErrorBoundary from './components/ErrorBoundary'
 import Notifications from './components/Notifications'
 import { useAppStore } from './store/useAppStore'
@@ -31,6 +32,7 @@ function App() {
           <Route path="/workflows" element={<Workflows />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Layout>
       <Notifications />
