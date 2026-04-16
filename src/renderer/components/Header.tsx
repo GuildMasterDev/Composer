@@ -1,21 +1,15 @@
 import { Search } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getDataAdapter } from '../adapters'
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [version, setVersion] = useState('0.1.0')
+  const [version, setVersion] = useState('')
   const navigate = useNavigate()
-  
+
   useEffect(() => {
-    if (window.electronAPI?.app?.getVersion) {
-      const appVersion = window.electronAPI.app.getVersion()
-      if (typeof appVersion === 'string') {
-        setVersion(appVersion)
-      }
-    } else if (window.electronAPI?.appVersion) {
-      window.electronAPI.appVersion().then(setVersion)
-    }
+    getDataAdapter().getAppVersion().then(setVersion)
   }, [])
   
   const handleSearch = (e: React.FormEvent) => {

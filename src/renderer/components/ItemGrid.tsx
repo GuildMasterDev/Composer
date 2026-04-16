@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ExternalLink, Star, Loader2 } from 'lucide-react'
 import { openExternalLink } from '../utils/links'
+import { getDataAdapter } from '../adapters'
 
 export interface BaseItem {
   id: string
@@ -61,11 +62,9 @@ export default function ItemGrid<T extends BaseItem>({
     : []
 
   const handleBookmark = async (item: T) => {
-    if (!window.electronAPI) return
-    
     setBookmarking(item.id)
     try {
-      await window.electronAPI.database.addBookmark({
+      await getDataAdapter().addBookmark({
         type: itemType,
         id: item.id,
         title: item.name

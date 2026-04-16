@@ -1,4 +1,5 @@
 import ItemGrid, { BaseItem } from '../components/ItemGrid'
+import { getDataAdapter } from '../adapters'
 
 interface DAW extends BaseItem {
   version: string
@@ -11,8 +12,7 @@ interface DAW extends BaseItem {
 
 export default function DAWs() {
   const loadDaws = async (): Promise<DAW[]> => {
-    if (!window.electronAPI) return []
-    return await window.electronAPI.database.getDaws()
+    return (await getDataAdapter().getDaws()) as DAW[]
   }
 
   const renderDAWDetails = (daw: DAW) => (
@@ -35,7 +35,7 @@ export default function DAWs() {
           <span className="text-muted-foreground">{daw.category}</span>
         </div>
       </div>
-      
+
       {daw.features && (
         <div className="mb-4">
           <h3 className="font-medium text-sm mb-2">Key Features:</h3>

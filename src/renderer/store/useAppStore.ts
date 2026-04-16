@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import type { DAW, Plugin, Resource, Bookmark } from '../../shared/types'
+import { getDataAdapter } from '../adapters'
 
 interface Notification {
   id: string
@@ -88,18 +89,17 @@ export const useAppStore = create<AppState>()(
         
         // Data actions
         refreshData: async () => {
-          if (!window.electronAPI) return
-          
           set({ isLoading: true })
-          
+
           try {
+            const adapter = getDataAdapter()
             const [daws, plugins, resources, bookmarks] = await Promise.all([
-              window.electronAPI.database.getDaws(),
-              window.electronAPI.database.getPlugins(),
-              window.electronAPI.database.getResources(),
-              window.electronAPI.database.getBookmarks()
+              adapter.getDaws(),
+              adapter.getPlugins(),
+              adapter.getResources(),
+              adapter.getBookmarks()
             ])
-            
+
             set({
               daws,
               plugins,
@@ -107,7 +107,7 @@ export const useAppStore = create<AppState>()(
               bookmarks,
               isLoading: false
             })
-            
+
             get().addNotification({
               type: 'success',
               message: 'Data refreshed successfully'
@@ -115,28 +115,26 @@ export const useAppStore = create<AppState>()(
           } catch (error) {
             console.error('Error refreshing data:', error)
             set({ isLoading: false })
-            
+
             get().addNotification({
               type: 'error',
               message: 'Failed to refresh data'
             })
           }
         },
-        
+
         addBookmark: async (itemType, itemId, title) => {
-          if (!window.electronAPI) return
-          
           try {
-            await window.electronAPI.database.addBookmark({
+            const adapter = getDataAdapter()
+            await adapter.addBookmark({
               type: itemType,
               id: itemId,
               title
             })
-            
-            // Refresh bookmarks
-            const bookmarks = await window.electronAPI.database.getBookmarks()
+
+            const bookmarks = await adapter.getBookmarks()
             set({ bookmarks })
-            
+
             get().addNotification({
               type: 'success',
               message: `Bookmarked "${title}"`
@@ -149,18 +147,15 @@ export const useAppStore = create<AppState>()(
             })
           }
         },
-        
+
         removeBookmark: async (id) => {
-          if (!window.electronAPI) return
-          
           try {
-            await window.electronAPI.database.removeBookmark(id)
-            
-            // Update local state
+            await getDataAdapter().removeBookmark(id)
+
             set((state) => ({
               bookmarks: state.bookmarks.filter(b => b.id !== id)
             }))
-            
+
             get().addNotification({
               type: 'success',
               message: 'Bookmark removed'

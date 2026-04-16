@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Music, Package, BookOpen, Bookmark } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { getDataAdapter } from '../adapters'
 
 interface Stats {
   daws: number
@@ -16,27 +17,26 @@ export default function Dashboard() {
     resources: 0,
     bookmarks: 0
   })
-  
+
   useEffect(() => {
     loadStats()
   }, [])
-  
+
   const loadStats = async () => {
-    if (window.electronAPI) {
-      const [daws, plugins, resources, bookmarks] = await Promise.all([
-        window.electronAPI.database.getDaws(),
-        window.electronAPI.database.getPlugins(),
-        window.electronAPI.database.getResources(),
-        window.electronAPI.database.getBookmarks()
-      ])
-      
-      setStats({
-        daws: daws.length,
-        plugins: plugins.length,
-        resources: resources.length,
-        bookmarks: bookmarks.length
-      })
-    }
+    const adapter = getDataAdapter()
+    const [daws, plugins, resources, bookmarks] = await Promise.all([
+      adapter.getDaws(),
+      adapter.getPlugins(),
+      adapter.getResources(),
+      adapter.getBookmarks()
+    ])
+
+    setStats({
+      daws: daws.length,
+      plugins: plugins.length,
+      resources: resources.length,
+      bookmarks: bookmarks.length
+    })
   }
   
   const statCards = [

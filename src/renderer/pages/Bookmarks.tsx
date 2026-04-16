@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Bookmark, Trash2 } from 'lucide-react'
+import { getDataAdapter } from '../adapters'
 
 interface BookmarkItem {
   id: string
@@ -12,23 +13,19 @@ interface BookmarkItem {
 
 export default function Bookmarks() {
   const [bookmarks, setBookmarks] = useState<BookmarkItem[]>([])
-  
+
   useEffect(() => {
     loadBookmarks()
   }, [])
-  
+
   const loadBookmarks = async () => {
-    if (window.electronAPI) {
-      const data = await window.electronAPI.database.getBookmarks()
-      setBookmarks(data)
-    }
+    const data = (await getDataAdapter().getBookmarks()) as BookmarkItem[]
+    setBookmarks(data)
   }
-  
+
   const handleRemove = async (id: string) => {
-    if (window.electronAPI) {
-      await window.electronAPI.database.removeBookmark(id)
-      loadBookmarks()
-    }
+    await getDataAdapter().removeBookmark(id)
+    loadBookmarks()
   }
   
   const getTypeColor = (type: string) => {

@@ -1,4 +1,5 @@
 import ItemGrid, { BaseItem } from '../components/ItemGrid'
+import { getDataAdapter } from '../adapters'
 
 interface Plugin extends BaseItem {
   type: string
@@ -12,8 +13,7 @@ interface Plugin extends BaseItem {
 
 export default function Plugins() {
   const loadPlugins = async (): Promise<Plugin[]> => {
-    if (!window.electronAPI) return []
-    return await window.electronAPI.database.getPlugins()
+    return (await getDataAdapter().getPlugins()) as Plugin[]
   }
 
   const renderPluginDetails = (plugin: Plugin) => (

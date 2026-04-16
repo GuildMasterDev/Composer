@@ -1,31 +1,27 @@
 import { useState, useEffect } from 'react'
 import { Moon, Sun, Save } from 'lucide-react'
+import { getDataAdapter } from '../adapters'
 
 export default function Settings() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [autoUpdate, setAutoUpdate] = useState(true)
   const [notifications, setNotifications] = useState(true)
-  
+
   useEffect(() => {
     loadSettings()
   }, [])
-  
+
   const loadSettings = async () => {
-    if (window.electronAPI) {
-      const savedTheme = await window.electronAPI.store.get('theme')
-      const savedAutoUpdate = await window.electronAPI.store.get('autoUpdate')
-      const savedNotifications = await window.electronAPI.store.get('notifications')
-      
-      if (savedTheme) setTheme(savedTheme as 'light' | 'dark')
-      if (savedAutoUpdate !== undefined && savedAutoUpdate !== null) {
-        setAutoUpdate(savedAutoUpdate as boolean)
-      }
-      if (savedNotifications !== undefined && savedNotifications !== null) {
-        setNotifications(savedNotifications as boolean)
-      }
-      
-      applyTheme((savedTheme as string) || 'light')
-    }
+    const adapter = getDataAdapter()
+    const savedTheme = await adapter.getSetting<string>('theme')
+    const savedAutoUpdate = await adapter.getSetting<boolean>('autoUpdate')
+    const savedNotifications = await adapter.getSetting<boolean>('notifications')
+
+    if (savedTheme) setTheme(savedTheme as 'light' | 'dark')
+    if (savedAutoUpdate !== null) setAutoUpdate(savedAutoUpdate)
+    if (savedNotifications !== null) setNotifications(savedNotifications)
+
+    applyTheme(savedTheme || 'light')
   }
   
   const applyTheme = (selectedTheme: string) => {
@@ -42,11 +38,10 @@ export default function Settings() {
   }
   
   const saveSettings = async () => {
-    if (window.electronAPI) {
-      await window.electronAPI.store.set('theme', theme)
-      await window.electronAPI.store.set('autoUpdate', autoUpdate)
-      await window.electronAPI.store.set('notifications', notifications)
-    }
+    const adapter = getDataAdapter()
+    await adapter.setSetting('theme', theme)
+    await adapter.setSetting('autoUpdate', autoUpdate)
+    await adapter.setSetting('notifications', notifications)
   }
   
   return (

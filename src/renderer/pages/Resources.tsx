@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ExternalLink, BookOpen, Video, FileText } from 'lucide-react'
 import { openExternalLink } from '../utils/links'
+import { getDataAdapter } from '../adapters'
 
 interface Resource {
   id: string
@@ -16,16 +17,14 @@ interface Resource {
 export default function Resources() {
   const [resources, setResources] = useState<Resource[]>([])
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
-  
+
   useEffect(() => {
     loadResources()
   }, [])
-  
+
   const loadResources = async () => {
-    if (window.electronAPI) {
-      const data = await window.electronAPI.database.getResources()
-      setResources(data)
-    }
+    const data = (await getDataAdapter().getResources()) as Resource[]
+    setResources(data)
   }
   
   const filteredResources = selectedDifficulty === 'all' 
@@ -46,13 +45,11 @@ export default function Resources() {
   }
   
   const handleBookmark = async (resource: Resource) => {
-    if (window.electronAPI) {
-      await window.electronAPI.database.addBookmark({
-        type: 'resource',
-        id: resource.id,
-        title: resource.title
-      })
-    }
+    await getDataAdapter().addBookmark({
+      type: 'resource',
+      id: resource.id,
+      title: resource.title
+    })
   }
   
   return (
