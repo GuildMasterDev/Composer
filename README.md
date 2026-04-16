@@ -2,6 +2,25 @@
 
 A comprehensive desktop application designed to be the ultimate resource hub and manual for music composers. Access information about DAWs, plugins, workflows, and industry tools all in one place.
 
+## 🌐 Live Demo
+
+A read-only, browser-based version is hosted on GitHub Pages:
+
+**https://guildmasterdev.github.io/Composer/**
+
+The demo ships with the same React + Radix UI + Tailwind interface as the desktop app, loads the DAW, plugin, resource, and workflow catalog from bundled JSON, and keeps your bookmarks and theme in the browser's local storage. It's the fastest way to see the UI without installing Electron.
+
+**Desktop-only features** — persistent SQLite database with search, export/import, native menus, auto-update, and any future file-system integrations — require the [desktop build](#production-build).
+
+## ✨ What's New in v1.1.0
+
+### Web Demo Added
+- Hosted read-only version of the app deploys to GitHub Pages on every push to `main`.
+- Same React UI as the desktop app, backed by a static-JSON data adapter.
+- Bookmarks and settings persist in `localStorage` in web mode.
+- Environment detection in `src/renderer/adapters/` routes every data call
+  to Electron IPC when available, else to the JSON adapter.
+
 ## ✨ What's New in v1.0.0
 
 ### Full Stack Modernization
@@ -118,14 +137,31 @@ npm run lint:fix
 #### Production Build
 
 ```bash
-# Build for your current platform
+# Build for your current platform (desktop/Electron)
 npm run build
 
 # The built application will be in the dist-electron folder
 # - Windows: .exe installer
-# - macOS: .dmg file  
+# - macOS: .dmg file
 # - Linux: .AppImage file
 ```
+
+#### Web Demo Build
+
+```bash
+# Build the static web demo (outputs to dist-web/)
+npm run build:web
+
+# Preview locally at http://localhost:4173/Composer/
+npm run preview:web
+
+# Dev server with HMR at http://localhost:5174/Composer/
+npm run dev:web
+```
+
+The web build excludes all Electron plugins and produces a fully static
+site. It's automatically deployed to GitHub Pages via
+`.github/workflows/deploy-web.yml` on every push to `main`.
 
 ### Troubleshooting
 

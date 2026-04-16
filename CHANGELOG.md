@@ -5,6 +5,54 @@ All notable changes to Composer's Hub will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-04-16
+
+Adds a hosted, read-only web demo of the app without touching the
+desktop build.
+
+### Added
+- **Live web demo** at https://guildmasterdev.github.io/Composer/,
+  deployed automatically on every push to `main` via a new
+  `.github/workflows/deploy-web.yml` GitHub Actions workflow
+  (`actions/upload-pages-artifact@v3` + `actions/deploy-pages@v4`).
+- **Data adapter layer** in `src/renderer/adapters/` that exposes a
+  single `DataAdapter` interface with two implementations:
+  - `electron.ts` — wraps `window.electronAPI` (desktop)
+  - `web.ts` — serves bundled JSON and uses `localStorage` for
+    bookmarks and settings (web)
+  - `index.ts` — runtime environment detection, cached after first call
+- **Static JSON seed** bundled with the renderer (`src/renderer/data/`):
+  `daws.json` and `plugins.json` copied from the desktop seed, plus two
+  new files — `resources.json` (10 curated learning resources) and
+  `workflows.json` (5 production workflow templates).
+- **Web build config** `vite.config.web.ts` producing `dist-web/` with
+  `base: '/Composer/'` (overridable via `COMPOSER_WEB_BASE` env), plus
+  `build:web`, `preview:web`, and `dev:web` scripts.
+- **Graceful web-mode UX**: sidebar "Demo" badge, Settings panel
+  explaining localStorage trade-offs, Bookmarks info banner, real
+  app version shown from `package.json` via Vite `define`.
+
+### Changed
+- Every renderer call site (DAWs / Plugins / Resources / Bookmarks /
+  Dashboard / Settings / Workflows pages, `ItemGrid`, `Header`, and the
+  Zustand store) now goes through `getDataAdapter()` instead of
+  `window.electronAPI` directly. Desktop behavior is identical — the
+  adapter detects and routes through the existing IPC surface.
+- `Workflows` page now renders seeded workflow templates with
+  expandable step/tool details instead of an empty state.
+- `Settings` page reads the app version dynamically and hides
+  Auto-Update / Notifications in web mode.
+- Favicon switched from the Vite scaffold `/vite.svg` to
+  `public/icon.svg` (relative path, works under any base).
+- `.gitignore` excludes `dist-web/`.
+
+### Preserved
+- Electron main process (`src/main/`) is unchanged — desktop `npm run
+  dev` and `npm run build` continue to work.
+- Tests: all 9 pass. The adapter picks up the `window.electronAPI`
+  mock from `src/test/setup.ts` in desktop mode, so
+  `ItemGrid.test.tsx`'s `addBookmark` spy assertion still holds.
+
 ## [1.0.0] - 2026-04-16
 
 Full dependency modernization across the entire stack.
