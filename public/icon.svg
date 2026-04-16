@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="noteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGradient)"/>
+  
+  <!-- Musical note symbol (treble clef simplified) -->
+  <g transform="translate(256, 256)">
+    <!-- Treble clef path -->
+    <path d="M -20 -120 Q -30 -80, -30 -40 Q -30 20, 0 60 Q 30 100, 30 140 Q 30 160, 10 170 Q -10 180, -30 160 Q -40 140, -30 120 Q -20 100, 0 100 Q 20 100, 30 120" 
+          stroke="url(#noteGradient)" 
+          stroke-width="16" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- Vertical line -->
+    <rect x="-8" y="-140" width="16" height="280" fill="url(#noteGradient)" rx="8"/>
+    
+    <!-- Note heads -->
+    <ellipse cx="40" cy="-20" rx="25" ry="18" fill="url(#noteGradient)" transform="rotate(-20 40 -20)"/>
+    <ellipse cx="-40" cy="20" rx="25" ry="18" fill="url(#noteGradient)" transform="rotate(20 -40 20)"/>
+    <ellipse cx="40" cy="60" rx="25" ry="18" fill="url(#noteGradient)" transform="rotate(-20 40 60)"/>
+    
+    <!-- Staff lines -->
+    <g opacity="0.3">
+      <rect x="-180" y="-60" width="360" height="3" fill="white"/>
+      <rect x="-180" y="-30" width="360" height="3" fill="white"/>
+      <rect x="-180" y="0" width="360" height="3" fill="white"/>
+      <rect x="-180" y="30" width="360" height="3" fill="white"/>
+      <rect x="-180" y="60" width="360" height="3" fill="white"/>
+    </g>
+  </g>
+</svg>
