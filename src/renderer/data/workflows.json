@@ -1,0 +1,42 @@
+[
+  {
+    "id": "wf-edm-drop",
+    "name": "EDM Drop Production",
+    "genre": "Electronic / Dance",
+    "description": "Classic drop-based EDM workflow from idea to mastered stem. Focused on energy management and clean low end.",
+    "steps": "1. Sketch the drop first — supersaw lead or bass riff over kick+snare\n2. Build tension: 8/16-bar build with riser, snare roll, gradual filter open\n3. Arrange intro/breakdown around the drop, not the other way around\n4. Sidechain bass/pads to kick for pumping feel\n5. Mix: mono bass below 120 Hz, wide leads, tight drum bus\n6. Master with limiter targeting -8 LUFS for streaming\n7. Reference against a commercial track in the same sub-genre",
+    "tools_required": "DAW, supersaw synth (Serum/Vital), compressor with sidechain, limiter, reference track plugin"
+  },
+  {
+    "id": "wf-hip-hop-beat",
+    "name": "Hip-Hop Beat Construction",
+    "genre": "Hip-Hop / Trap",
+    "description": "Sample-forward or melody-first beat-making workflow. Prioritizes groove, drum punch, and 808 sub management.",
+    "steps": "1. Pick BPM (70–85 for modern trap, 85–95 for boom-bap half-time)\n2. Find the melodic hook: sample flip, chopped loop, or keyboard sketch\n3. Program drums: kick on 1, snare/clap on 3, hi-hat patterns with swing\n4. Lay the 808 — tuned to the root of the sample, glide between notes\n5. Sidechain the 808 to the kick so they don't fight\n6. Add ear candy: vocal chops, risers, reverse hits between sections\n7. Mix: punchy drums, sub-clean 808, sample sits in the midrange",
+    "tools_required": "DAW, drum sampler, 808 kit, sample chopping tool, saturation plugin"
+  },
+  {
+    "id": "wf-cinematic-trailer",
+    "name": "Cinematic Trailer Cue",
+    "genre": "Film / Trailer",
+    "description": "Epic orchestral-meets-hybrid workflow for trailer-style cues with clear build/hit/aftermath structure.",
+    "steps": "1. Establish the core theme in 4–8 bars — simple, emotional, memorable\n2. Build orchestration from minimal (piano/solo strings) to full ensemble\n3. Layer hybrid sound design: sub drops, braams, reverses under orchestral hits\n4. Rhythm bed: taiko + low percussion in the build, full toms + snare in the climax\n5. Automate low-end and reverb sends heavily for the cinematic 'breathe'\n6. Use impacts at every structural boundary (intro→build→hit→aftermath)\n7. Master wide but mono-compatible; trailers often play on laptop speakers",
+    "tools_required": "Orchestral library (Spitfire/Cinesamples), cinematic FX library, convolution reverb, heavy sub synth, transient designer"
+  },
+  {
+    "id": "wf-indie-pop",
+    "name": "Indie Pop Song Arrangement",
+    "genre": "Pop / Indie",
+    "description": "Vocal-centric songwriting arrangement pattern — intro, verse, pre-chorus, chorus, bridge. Tight and singable.",
+    "steps": "1. Write chord progression and vocal melody first, before any production choices\n2. Arrange sections: intro (8) → verse (16) → pre-chorus (8) → chorus (16) → verse (16) → pre (8) → chorus (16) → bridge (8) → double chorus (32)\n3. Production rises section by section: add elements, don't remove them\n4. Drum program: simple kick/snare/hat in verse, full kit + percussion in chorus\n5. Vocal production: doubles in chorus, harmonies in bridge, ad-libs in outro\n6. Reference mix at multiple volumes — if the hook loses impact quiet, it's too compressed\n7. Final master targets -10 LUFS for streaming distribution",
+    "tools_required": "DAW, pitch correction (Melodyne/Autotune), vocal compressor, analog-emulating EQ, reverb send"
+  },
+  {
+    "id": "wf-lofi-hip-hop",
+    "name": "Lo-fi Hip-Hop / Chillhop",
+    "genre": "Lo-fi / Chillhop",
+    "description": "Relaxed, imperfect-on-purpose workflow. Emphasizes texture, tape saturation, and a loose human feel.",
+    "steps": "1. Record or find a mellow jazz/soul chord loop (Rhodes, upright bass, sax)\n2. Slow it down slightly (-1 to -3 semitones) to create lo-fi character\n3. Program drums with intentional swing — shift hats off-grid for human feel\n4. Apply tape saturation to the full mix for gentle compression and warmth\n5. Add vinyl crackle layer at low volume for texture\n6. Bitcrush or low-pass the mix bus subtly — roll off above 15 kHz\n7. Keep arrangement simple; 4–8 bar loop variations for the full track",
+    "tools_required": "DAW, tape saturation plugin, vinyl texture sample, bitcrusher, Rhodes/jazz sample library"
+  }
+]

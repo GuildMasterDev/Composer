@@ -1,0 +1,102 @@
+[
+  {
+    "id": "res-ableton-learn",
+    "title": "Learning Music with Ableton",
+    "type": "article",
+    "url": "https://learningmusic.ableton.com/",
+    "description": "Free interactive guide that teaches music fundamentals directly in the browser — beats, melody, harmony, structure. No prior experience required.",
+    "author": "Ableton",
+    "difficulty": "beginner",
+    "tags": "theory, rhythm, interactive"
+  },
+  {
+    "id": "res-ableton-synths",
+    "title": "Learning Synths",
+    "type": "article",
+    "url": "https://learningsynths.ableton.com/",
+    "description": "Hands-on browser tutorial covering oscillators, filters, envelopes, and modulation. The fastest path from 'what is a synth' to 'I can program one'.",
+    "author": "Ableton",
+    "difficulty": "beginner",
+    "tags": "synthesis, sound design"
+  },
+  {
+    "id": "res-andrew-huang",
+    "title": "Andrew Huang — Music Production Essentials",
+    "type": "video",
+    "url": "https://www.youtube.com/@andrewhuang",
+    "description": "One of the best producer-educators on YouTube. Covers sound design, mixing, sampling, and workflow tricks across a huge range of genres.",
+    "author": "Andrew Huang",
+    "difficulty": "intermediate",
+    "tags": "production, mixing, sound design"
+  },
+  {
+    "id": "res-dan-worrall",
+    "title": "Dan Worrall — Deep Mixing Concepts",
+    "type": "video",
+    "url": "https://www.youtube.com/@DanWorrall",
+    "description": "Technically rigorous breakdowns of compression, EQ, saturation, and psychoacoustics. The channel that corrects the myths you picked up elsewhere.",
+    "author": "Dan Worrall",
+    "difficulty": "advanced",
+    "tags": "mixing, mastering, psychoacoustics"
+  },
+  {
+    "id": "res-sound-on-sound",
+    "title": "Sound on Sound Magazine",
+    "type": "article",
+    "url": "https://www.soundonsound.com/",
+    "description": "Long-running pro audio publication. Deep technique articles, gear reviews, and the canonical 'Mix Rescue' series where engineers fix readers' mixes.",
+    "author": "Sound on Sound",
+    "difficulty": "intermediate",
+    "tags": "mixing, gear, technique"
+  },
+  {
+    "id": "res-produce-like-a-pro",
+    "title": "Produce Like A Pro",
+    "type": "video",
+    "url": "https://www.youtube.com/@producelikeapro",
+    "description": "Warren Huart's channel — mixing workshops, interviews with legendary producers, and practical tips you can apply in your next session.",
+    "author": "Warren Huart",
+    "difficulty": "intermediate",
+    "tags": "mixing, production, interviews"
+  },
+  {
+    "id": "res-reaktor-primer",
+    "title": "The Complete Guide to Reaktor",
+    "type": "book",
+    "url": "https://www.native-instruments.com/en/products/komplete/synths/reaktor-6/",
+    "description": "Modular synthesis environment reference. If you want to build your own instruments and effects from primitives, this is where you start.",
+    "author": "Native Instruments",
+    "difficulty": "advanced",
+    "tags": "synthesis, modular, dsp"
+  },
+  {
+    "id": "res-tape-op",
+    "title": "Tape Op Magazine",
+    "type": "article",
+    "url": "https://tapeop.com/",
+    "description": "Engineer-focused magazine with a DIY/indie slant. Great interviews with working producers about what actually happens in their sessions.",
+    "author": "Tape Op",
+    "difficulty": "intermediate",
+    "tags": "engineering, interviews, recording"
+  },
+  {
+    "id": "res-wavetable-synthesis",
+    "title": "Wavetable Synthesis Explained",
+    "type": "video",
+    "url": "https://www.youtube.com/results?search_query=wavetable+synthesis+explained",
+    "description": "Understand how wavetable synths (Serum, Vital, Massive X) actually work — wavetables as 2D position arrays, warp functions, and modulation targets.",
+    "author": "Various",
+    "difficulty": "intermediate",
+    "tags": "synthesis, wavetable, serum, vital"
+  },
+  {
+    "id": "res-mixing-secrets",
+    "title": "Mixing Secrets for the Small Studio",
+    "type": "book",
+    "url": "https://www.cambridge-mt.com/ms/mtk/",
+    "description": "Mike Senior's methodical, reference-grade mixing textbook. Also includes hundreds of free multitracks so you can practice on real songs.",
+    "author": "Mike Senior",
+    "difficulty": "intermediate",
+    "tags": "mixing, reference, multitracks"
+  }
+]
