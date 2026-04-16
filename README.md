@@ -2,17 +2,17 @@
 
 A comprehensive desktop application designed to be the ultimate resource hub and manual for music composers. Access information about DAWs, plugins, workflows, and industry tools all in one place.
 
-## ✨ What's New in v0.2.0
+## ✨ What's New in v1.0.0
 
-### Major Improvements
-- **60% Code Reduction** - Refactored with reusable components for better maintainability
-- **Full TypeScript Coverage** - Complete type safety across the entire application
-- **Professional Error Handling** - Graceful error recovery with user-friendly messages
-- **Loading States** - Visual feedback for all async operations
-- **State Management** - Implemented Zustand for efficient global state
-- **Testing Infrastructure** - Full test suite with Vitest and React Testing Library
-- **Enhanced Security** - Input validation and SQL injection prevention
-- **User Notifications** - Real-time feedback for all user actions
+### Full Stack Modernization
+- **Electron 41** (up from 28) with `@electron/rebuild` v4
+- **Vite 6**, **Tailwind CSS 4**, **TypeScript 5.9**, **ESLint 9 flat config**
+- **React 18.3**, updated Radix UI, Zustand, and all utility libraries
+- **better-sqlite3 12** for Electron 41 compatibility
+- **0 npm audit vulnerabilities** (down from 54)
+- **GitHub Actions CI** running typecheck, lint, and tests on push/PR
+
+See [CHANGELOG.md](CHANGELOG.md) for the full v1.0.0 release notes.
 
 ## Features
 
@@ -59,14 +59,14 @@ A comprehensive desktop application designed to be the ultimate resource hub and
 ## Installation
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js 20+ and npm
 - Git
 
 ### Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/guildmasterdev/Composer.git
+git clone https://github.com/GuildMasterDev/Composer.git
 cd Composer
 
 # Install dependencies
@@ -147,15 +147,16 @@ cd ../..
 
 ## Tech Stack
 
-- **Electron** - Cross-platform desktop framework
-- **React 18** - UI library with hooks
-- **TypeScript** - Type-safe development
-- **Vite** - Fast build tool with HMR
-- **Tailwind CSS** - Utility-first styling
-- **SQLite (better-sqlite3)** - Local database
+- **Electron 41** - Cross-platform desktop framework
+- **React 18.3** - UI library with hooks
+- **TypeScript 5.9** - Type-safe development
+- **Vite 6** - Fast build tool with HMR
+- **Tailwind CSS 4** - Utility-first styling
+- **SQLite (better-sqlite3 12)** - Local database
 - **Zustand** - Lightweight state management
 - **Vitest** - Fast unit testing framework
 - **React Testing Library** - Component testing
+- **ESLint 9** (flat config) - Linting
 
 ## Project Structure
 

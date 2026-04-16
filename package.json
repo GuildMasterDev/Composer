@@ -1,6 +1,6 @@
 {
   "name": "composers-hub",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A comprehensive resource hub and manual for music composers",
   "main": "src/main/main.js",
   "scripts": {

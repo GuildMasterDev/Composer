@@ -5,6 +5,39 @@ All notable changes to Composer's Hub will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-04-16
+
+Full dependency modernization across the entire stack.
+
+### Changed
+- **Electron 28 → 41.2.1**, electron-builder 24 → 26, migrated from the
+  deprecated `electron-rebuild` package to `@electron/rebuild` v4.
+- **Vite 5 → 6.4.2** with compatible `@vitejs/plugin-react`,
+  `vite-plugin-electron`, and `vite-plugin-electron-renderer` updates.
+- **Tailwind CSS 3 → 4.2.2** using the new `@tailwindcss/postcss` plugin;
+  `index.css` now uses `@import "tailwindcss"` and references the existing
+  JS config via `@config`.
+- **TypeScript 5.3 → 5.9.3** and **ESLint 8 → 9.39.4** with a full flat
+  config migration (`.eslintrc.json` → `eslint.config.js`).
+- **React 18.2 → 18.3.1** (+ react-dom and @types/react{,-dom}),
+  react-router-dom 6.21 → 6.30, zustand 4.4 → 4.5.
+- **better-sqlite3 9.3 → 12.9** (required for Electron 41's V8 API).
+- All `@radix-ui/*`, `lucide-react`, `class-variance-authority`,
+  `tailwind-merge`, `clsx`, `electron-store`, testing-library, vitest, and
+  build/tooling deps bumped to latest compatible.
+
+### Removed
+- `electron-icon-builder` dev dep — unused in scripts (all icons already
+  shipped in `resources/`) and pulled in an abandoned `phantomjs-prebuilt`
+  transitive tree.
+
+### Added
+- GitHub Actions CI workflow (`.github/workflows/ci.yml`) running
+  typecheck, lint, and tests on Node 20 and latest LTS.
+
+### Security
+- **0 npm audit vulnerabilities** (down from 54 on 0.2.0).
+
 ## [0.2.0] - 2025-09-06
 
 ### Added
