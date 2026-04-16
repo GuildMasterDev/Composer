@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Bookmark, Trash2 } from 'lucide-react'
-import { getDataAdapter } from '../adapters'
+import { Bookmark, Trash2, Info } from 'lucide-react'
+import { getDataAdapter, isWebMode } from '../adapters'
 
 interface BookmarkItem {
   id: string
@@ -43,8 +43,20 @@ export default function Bookmarks() {
   
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Your Bookmarks</h1>
-      
+      <h1 className="text-3xl font-bold mb-4">Your Bookmarks</h1>
+
+      {isWebMode() && (
+        <div className="flex items-start gap-3 mb-6 p-4 bg-secondary/50 border border-border rounded-lg text-sm">
+          <Info className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground" />
+          <p className="text-muted-foreground">
+            In the web demo, bookmarks are saved in your browser&apos;s local
+            storage — they stay on this device and disappear if you clear
+            site data. The desktop app persists them in a local SQLite
+            database with notes, export/import, and sync-friendly formats.
+          </p>
+        </div>
+      )}
+
       {bookmarks.length === 0 ? (
         <div className="bg-card border border-border rounded-lg p-12 text-center">
           <Bookmark className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />

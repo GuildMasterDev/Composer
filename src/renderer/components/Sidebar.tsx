@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom'
-import { 
-  Home, 
-  Music, 
-  Package, 
-  BookOpen, 
-  Workflow, 
-  Bookmark, 
-  Settings 
+import {
+  Home,
+  Music,
+  Package,
+  BookOpen,
+  Workflow,
+  Bookmark,
+  Settings,
+  Globe
 } from 'lucide-react'
+import { isWebMode } from '../adapters'
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
@@ -19,10 +21,23 @@ const navigation = [
 ]
 
 export default function Sidebar() {
+  const webMode = isWebMode()
+
   return (
     <div className="w-64 bg-card border-r border-border flex flex-col">
       <div className="p-6">
-        <h1 className="text-2xl font-bold text-primary">Composer</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-primary">Composer</h1>
+          {webMode && (
+            <span
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground"
+              title="You are viewing the read-only web demo"
+            >
+              <Globe className="h-3 w-3" />
+              Demo
+            </span>
+          )}
+        </div>
       </div>
       
       <nav className="flex-1 px-4 pb-4">

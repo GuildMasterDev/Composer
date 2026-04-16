@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Moon, Sun, Save } from 'lucide-react'
-import { getDataAdapter } from '../adapters'
+import { getDataAdapter, isWebMode } from '../adapters'
 
 export default function Settings() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [autoUpdate, setAutoUpdate] = useState(true)
   const [notifications, setNotifications] = useState(true)
+  const [version, setVersion] = useState('')
+  const webMode = isWebMode()
 
   useEffect(() => {
     loadSettings()
@@ -13,13 +15,17 @@ export default function Settings() {
 
   const loadSettings = async () => {
     const adapter = getDataAdapter()
-    const savedTheme = await adapter.getSetting<string>('theme')
-    const savedAutoUpdate = await adapter.getSetting<boolean>('autoUpdate')
-    const savedNotifications = await adapter.getSetting<boolean>('notifications')
+    const [savedTheme, savedAutoUpdate, savedNotifications, appVersion] = await Promise.all([
+      adapter.getSetting<string>('theme'),
+      adapter.getSetting<boolean>('autoUpdate'),
+      adapter.getSetting<boolean>('notifications'),
+      adapter.getAppVersion()
+    ])
 
     if (savedTheme) setTheme(savedTheme as 'light' | 'dark')
     if (savedAutoUpdate !== null) setAutoUpdate(savedAutoUpdate)
     if (savedNotifications !== null) setNotifications(savedNotifications)
+    setVersion(appVersion)
 
     applyTheme(savedTheme || 'light')
   }
@@ -83,49 +89,67 @@ export default function Settings() {
           </div>
         </div>
         
-        <div className="bg-card border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Application</h2>
-          
-          <div className="space-y-4">
-            <label className="flex items-center justify-between">
-              <div>
-                <span className="font-medium">Auto Update</span>
-                <p className="text-sm text-muted-foreground">
-                  Automatically download and install updates
-                </p>
-              </div>
-              <input
-                type="checkbox"
-                checked={autoUpdate}
-                onChange={(e) => setAutoUpdate(e.target.checked)}
-                className="w-5 h-5 rounded border-input"
-              />
-            </label>
-            
-            <label className="flex items-center justify-between">
-              <div>
-                <span className="font-medium">Notifications</span>
-                <p className="text-sm text-muted-foreground">
-                  Show notifications for new content and updates
-                </p>
-              </div>
-              <input
-                type="checkbox"
-                checked={notifications}
-                onChange={(e) => setNotifications(e.target.checked)}
-                className="w-5 h-5 rounded border-input"
-              />
-            </label>
+        {!webMode && (
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-xl font-semibold mb-4">Application</h2>
+
+            <div className="space-y-4">
+              <label className="flex items-center justify-between">
+                <div>
+                  <span className="font-medium">Auto Update</span>
+                  <p className="text-sm text-muted-foreground">
+                    Automatically download and install updates
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={autoUpdate}
+                  onChange={(e) => setAutoUpdate(e.target.checked)}
+                  className="w-5 h-5 rounded border-input"
+                />
+              </label>
+
+              <label className="flex items-center justify-between">
+                <div>
+                  <span className="font-medium">Notifications</span>
+                  <p className="text-sm text-muted-foreground">
+                    Show notifications for new content and updates
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={notifications}
+                  onChange={(e) => setNotifications(e.target.checked)}
+                  className="w-5 h-5 rounded border-input"
+                />
+              </label>
+            </div>
           </div>
-        </div>
-        
+        )}
+
+        {webMode && (
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-xl font-semibold mb-4">Web Demo</h2>
+            <p className="text-sm text-muted-foreground">
+              You&apos;re viewing the read-only web demo. Theme and bookmarks are
+              saved in this browser&apos;s local storage. For the full experience
+              — persistent SQLite database, export/import, auto-update, and
+              native menus — install the desktop app.
+            </p>
+          </div>
+        )}
+
         <div className="bg-card border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">About</h2>
-          
+
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Version</span>
-              <span>0.1.0</span>
+              <span>{version || '—'}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Mode</span>
+              <span>{webMode ? 'Web Demo' : 'Desktop'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">License</span>
